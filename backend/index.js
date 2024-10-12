@@ -7,8 +7,9 @@ const { Todos } = require("./db")
 const { User } = require("./db")
 const cors = require("cors")
 const app = express()
+const JWT_SECRET = process.env.JWT_SECRET
 const corsOptions = {
-    origin: 'http://localhost:5173',  // Your frontend origin
+    origin: '*',  // Your frontend origin
     methods: ['GET', 'POST', 'OPTIONS'],  // Allow OPTIONS method
     credentials: true,  // Allow cookies and authentication headers
     allowedHeaders: ['Content-Type', 'Authorization'],  // Allow specific headers
@@ -32,7 +33,7 @@ const authMiddleware =(req, res, next) => {
     }
   
     try {
-      const decoded = jwt.verify(token,"kdjfdkfj94r" ); // Verify the token
+      const decoded = jwt.verify(token,JWT_SECRET ); // Verify the token
       console.log(decoded)
       req.user = decoded; // Attach user info to the request object
       next(); // Move to the next middleware/route handler
@@ -85,7 +86,7 @@ app.post('/login', async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: 'Incorrect Password' });
         console.log("reacheddd")
-        const token = jwt.sign({ userId: user._id },"kdjfdkfj94r");
+        const token = jwt.sign({ userId: user._id },JWT_SECRET);
         res.json({token:token,message:"Logged in Successfully"});
     } catch (err) {
         res.status(500).json({ message:"Invalid inputs" });

@@ -6,12 +6,15 @@ import { Input } from '../components/input'
 import Navbar from '../components/Navbar'
 import { toast, ToastContainer } from 'react-toastify'
 import { AuthContext } from '../context/authcontext'
+import Skeleton from '../components/Skeleton'
 export default function () {
+    // const BACKEND_URL = "https://todobxccc.vercel.app"
     const BACKEND_URL = "http://127.0.0.1:3000"
     const { isLogin } = useContext(AuthContext)
     const [todos, settodos] = useState([])
     const [newtodo, setnewtodo] = useState("")
     const [editId, seteditId] = useState(null)
+    const [load,setload] = useState(true)
     const [editValue, seteditValue] = useState("")
     const [token, settoken] = useState(localStorage.getItem("token"))
     useEffect(() => {
@@ -30,6 +33,7 @@ export default function () {
                     // console.log(response);
                     if(response.status===200){
                         settodos(response.data)
+                        setload(false)
                     }else{
                         toast.error(response.data.message)
                     }
@@ -55,7 +59,7 @@ export default function () {
             const response = await axios.post(`${BACKEND_URL}/todo`, { todo: newtodo },
                 { headers: { Authorization: `${token}` } }
             )
-
+            setnewtodo("")
             if (response.status === 200) {
                 toast.success(response.data.message)
 
@@ -129,9 +133,10 @@ export default function () {
                 </div>
                 <div className=' flex flex-col  items-center justify-center'>
                     {isLogin ? <>
+                {load? <><Skeleton/><Skeleton/><Skeleton/><Skeleton/><Skeleton/></>:<>
                         {todos.map(todo =>
                         (
-
+                            
                             <div key={todo._id} className='transition-all p-2   w-96 md:w-[700px] sm:w-[600px] duration-1000  text-sky-400 font-mono  z-20 border-b-2 border-sky-400' >
 
                                 {
@@ -143,7 +148,7 @@ export default function () {
                                                 className='text-sky-500 border-2 border-sky-500 text-xl min-w-80 sm:min-w-[400px] md:min-w-[600px] bg-neutral-800'
                                                 value={editValue}
                                                 onChange={(e) => seteditValue(e.target.value)}
-                                            />
+                                                />
                                             <button className=' hover:bg-sky-600 hover:border-neutral-700 font-semibold rounded-md transition-all duration-500 hover:text-black border  border-sky-700 px-3 py-1 text-sky-400 mt-2 ml-8' onClick={() => saveEdit(todo._id)}>Save</button>
                                         </>
                                     ) : (
@@ -167,7 +172,8 @@ export default function () {
                                     )}
                             </div>
                         )
-                        )}
+                    )}
+                    </>}
                     </> : <><div className='text-sky-300'>(Login to use)</div> </>}
                 </div>
                 {/* <input type="text" placeholder='Todo' /> */}
