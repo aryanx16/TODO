@@ -2,7 +2,7 @@ const express = require("express")
 const bodyparser = require("body-parser")
 const app = express()
 require('dotenv').config();
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const { Todos } = require("./db")
 const { User } = require("./db")
