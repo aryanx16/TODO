@@ -11,13 +11,13 @@ export default function (){
     const [username,setusername] = useState("");
     const [password,setpassword] = useState("");
     // const [getuser,setgetuser] = useState(false);
-    const BACKEND_URL = "https://todobackend-o68s8jwpj-aryanx16s-projects.vercel.app"
+    const BACKEND_URL = "http://127.0.0.1:3000"
 
     const { isLogin, handleLogout ,handleLogin } = useContext(AuthContext);
 
     async function handleloginn(){
         try{
-            const response = await axios.post(`${BACKEND_URL}/login`,{username,password},{withCredentials:true})
+            const response = await axios.post(`${BACKEND_URL}/login`,{username,password},)
             console.log(response.status);
             if(response.status===200){
                 localStorage.setItem("token",response.data.token)
