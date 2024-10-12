@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar'
 import { toast, ToastContainer } from 'react-toastify'
 import { AuthContext } from '../context/authcontext'
 export default function () {
-    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
+    const BACKEND_URL = "https://todobackend-2azpdxxjl-aryanx16s-projects.vercel.app"
     const { isLogin } = useContext(AuthContext)
     const [todos, settodos] = useState([])
     const [newtodo, setnewtodo] = useState("")
@@ -99,7 +99,7 @@ export default function () {
     async function saveEdit(id) {
         try {
 
-            const response = await axios.put(`${BACKEND_URL}/todo/${id}`, { updatedTodo: editValue, }, { headers: { Authorization: `Bearer ${token}` },withCredentials:true, })
+            const response = await axios.put(`${BACKEND_URL}/todo/${id}`, { updatedTodo: editValue, }, { headers: { Authorization: `Bearer ${token}` },withCredentials:true })
             if (response.status === 200) {
 
                 const updatedTodos = todos.map(todo =>

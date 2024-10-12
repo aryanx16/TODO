@@ -8,7 +8,7 @@ const { User } = require("./db")
 const cors = require("cors")
 const app = express()
 const corsOptions = {
-    origin: "http://localhost:5173", // Frontend URL
+    origin: "*", // Frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // If you are using cookies or authorization headers
 };
