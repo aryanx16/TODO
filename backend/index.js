@@ -8,16 +8,24 @@ const { User } = require("./db")
 const cors = require("cors")
 const app = express()
 const corsOptions = {
-    origin: "http://localhost:5173/", // Frontend URL
+    origin: "http://localhost:5173", // Frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // If you are using cookies or authorization headers
 };
 app.use(cors(corsOptions))
-app.options('*', cors(corsOptions)); // This allows preflight requests
+app.options('*', (req, res) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.sendStatus(204); // No content
+});// This allows preflight requests
 app.use(express.json())
 
 
 const authMiddleware =(req, res, next) => {
+    if (req.method === "OPTIONS") {
+        return next(); // Skip auth for OPTIONS requests
+    }
     const token = req.header('Authorization')?.replace('Bearer ', ''); // Extract token from header
     console.log(token)
     if (!token) {
