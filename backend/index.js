@@ -7,7 +7,17 @@ const { Todos } = require("./db")
 const { User } = require("./db")
 const cors = require("cors")
 const app = express()
-app.use(cors({origin:"http://localhost:5173" , credentials:true}))
+const corsOptions = {
+    origin: 'http://localhost:5173',  // Your frontend origin
+    methods: ['GET', 'POST', 'OPTIONS'],  // Allow OPTIONS method
+    credentials: true,  // Allow cookies and authentication headers
+    allowedHeaders: ['Content-Type', 'Authorization'],  // Allow specific headers
+  };
+  
+  app.use(cors(corsOptions));
+  
+  // Handle preflight requests (OPTIONS)
+  app.options('*', cors(corsOptions));
 app.use(express.json())
 
 
