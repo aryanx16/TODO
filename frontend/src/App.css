@@ -1,0 +1,20 @@
+.register {
+    position: relative;
+    overflow: hidden; /* Ensures the border animation is contained */
+}
+
+.register::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0; /* Position at the bottom */
+    width: 0; /* Start with zero width */
+    height: 2px; /* Set the height of the border */
+    background-color: skyblue; /* Color of the border */
+    transition: width 0.5s ease, left 0.5s ease; /* Animation for width and position */
+}
+
+.register:hover::before {
+    width: 100%; /* Expand to full width on hover */
+    left: 0; /* Move to the left to start from the middle */
+}
