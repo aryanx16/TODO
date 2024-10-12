@@ -18,7 +18,7 @@ const authMiddleware =(req, res, next) => {
     }
   
     try {
-      const decoded = jwt.verify(token,process.env.JWT_SECRET ); // Verify the token
+      const decoded = jwt.verify(token,"kdjfdkfj94r" ); // Verify the token
       console.log(decoded)
       req.user = decoded; // Attach user info to the request object
       next(); // Move to the next middleware/route handler
@@ -67,7 +67,7 @@ app.post('/login', async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: 'Incorrect Password' });
         console.log("reacheddd")
-        const token = jwt.sign({ userId: user._id },process.env.JWT_SECRET);
+        const token = jwt.sign({ userId: user._id },"kdjfdkfj94r");
         res.json({token:token,message:"Logged in Successfully"});
     } catch (err) {
         res.status(500).json({ message:"Invalid inputs" });

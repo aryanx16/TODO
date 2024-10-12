@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
-const DATABASE_URL = process.env.DATABASE_URL
+// const DATABASE_URL = process.env.DATABASE_URL
+const DATABASE_URL ="mongodb+srv://babreab17:J94MWlt8WAUsAZkE@cluster0.alld9.mongodb.net/"
 mongoose.connect(DATABASE_URL)
 
 const todoSchema = new mongoose.Schema({
