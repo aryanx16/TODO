@@ -26,7 +26,10 @@ const authMiddleware =(req, res, next) => {
       res.status(401).json({ message: 'Please Login again!' });
     }
   };
-
+app.get("/",(req,res)=>{
+    console.log("server is running")
+    res.send("server is running ")
+})
 app.post('/register', async (req, res) => {
     const { username, password } = req.body;
     console.log(username)
