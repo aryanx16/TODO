@@ -7,8 +7,9 @@ const jwt = require("jsonwebtoken")
 const { Todos } = require("./db")
 const { User } = require("./db")
 const cors = require("cors")
-app.use(express.json())
 app.use(cors())
+app.use(express.json())
+
 
 const authMiddleware =(req, res, next) => {
     const token = req.header('Authorization')?.replace('Bearer ', ''); // Extract token from header
