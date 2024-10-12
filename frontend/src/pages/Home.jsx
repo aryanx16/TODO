@@ -18,11 +18,13 @@ export default function () {
         const tokennn = localStorage.getItem("token")
         settoken(tokennn);
         console.log(isLogin)
+         axios.get(`${BACKEND_URL}`,{withCredentials:true}).then(respp=>{console.log(respp)})
         if(token){try {
             axios.get(`${BACKEND_URL}/todos`, {
                 headers: {
                     Authorization: `Bearer ${token}`, // Add the token as a Bearer token
                 },
+                withCredentials:true,
             })
                 .then(response => {
                     // console.log(response);
@@ -45,13 +47,13 @@ export default function () {
         console.log(todos);
         settodos(updatedtodo)
         console.log(updatedtodo)
-        await axios.put(`${BACKEND_URL}/${id}`, { isCompleted: currentstate }, { headers: { Authorization: `Bearer ${token}` } })
+        await axios.put(`${BACKEND_URL}/${id}`, { isCompleted: currentstate }, { headers: { Authorization: `Bearer ${token}` },withCredentials:true, })
 
     }
     async function addtodo() {
         try {
             const response = await axios.post(`${BACKEND_URL}/todo`, { todo: newtodo },
-                { headers: { Authorization: `${token}` } }
+                { headers: { Authorization: `${token}` },withCredentials:true, }
             )
 
             if (response.status === 200) {
@@ -74,7 +76,7 @@ export default function () {
     async function handledelete(id) {
         try {
 
-            const response = await axios.delete(`${BACKEND_URL}/todo/${id}`, { headers: { Authorization: `${token}` } })
+            const response = await axios.delete(`${BACKEND_URL}/todo/${id}`, { headers: { Authorization: `${token}` },withCredentials:true, })
             if (response.status === 200) {
                 console.log("before fileter")
                 settodos(todos.filter(todo => (todo._id !== id)))
@@ -97,7 +99,7 @@ export default function () {
     async function saveEdit(id) {
         try {
 
-            const response = await axios.put(`${BACKEND_URL}/todo/${id}`, { updatedTodo: editValue, }, { headers: { Authorization: `Bearer ${token}` } })
+            const response = await axios.put(`${BACKEND_URL}/todo/${id}`, { updatedTodo: editValue, }, { headers: { Authorization: `Bearer ${token}` },withCredentials:true, })
             if (response.status === 200) {
 
                 const updatedTodos = todos.map(todo =>

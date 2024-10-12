@@ -9,10 +9,12 @@ export default function (){
    const navigate = useNavigate();
     const [username,setusername] = useState("");
     const [password,setpassword] = useState("");
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
+
     async function handleregister(){
         try{
 
-            const response = await axios.post(`http://127.0.0.1:3000/register`,{username,password})
+            const response = await axios.post(`${BACKEND_URL}/register`,{username,password},{withCredentials:true,})
             if(response.status===200){
                 toast.success(response.data.message)
                 console.log(response.data);

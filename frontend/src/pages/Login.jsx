@@ -11,11 +11,13 @@ export default function (){
     const [username,setusername] = useState("");
     const [password,setpassword] = useState("");
     // const [getuser,setgetuser] = useState(false);
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
+
     const { isLogin, handleLogout ,handleLogin } = useContext(AuthContext);
 
     async function handleloginn(){
         try{
-            const response = await axios.post(`http://127.0.0.1:3000/login`,{username,password})
+            const response = await axios.post(`${BACKEND_URL}/login`,{username,password},{withCredentials:true})
             console.log(response.status);
             if(response.status===200){
                 localStorage.setItem("token",response.data.token)
