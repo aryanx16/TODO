@@ -1,14 +1,14 @@
 const express = require("express")
 const bodyparser = require("body-parser")
-const app = express()
 require('dotenv').config();
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const { Todos } = require("./db")
 const { User } = require("./db")
 const cors = require("cors")
+const app = express()
 const corsOptions = {
-    origin: "*", // Frontend URL
+    origin: "*http://localhost:5173", // Frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // If you are using cookies or authorization headers
 };
