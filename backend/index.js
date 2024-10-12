@@ -35,7 +35,7 @@ const authMiddleware =(req, res, next) => {
   };
 app.get("/",(req,res)=>{
     console.log("server is runninggggggggggggg....")
-    res.send("server is running ")
+    res.send("server is runninggggggggggggggggg ")
 })
 app.get("/gett",(req,res)=>{
     console.log("getttin.....")
