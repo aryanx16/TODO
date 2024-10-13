@@ -19,8 +19,8 @@ export default function () {
     useEffect(() => {
         const tokennn = localStorage.getItem("token")
         settoken(tokennn);
-        console.log(isLogin)
-         axios.get(`${BACKEND_URL}`).then(respp=>{console.log(respp)})
+        // console.log(isLogin)
+        //  axios.get(`${BACKEND_URL}`).then(respp=>{console.log(respp)})
         if(token){try {
             axios.get(`${BACKEND_URL}/todos`, {
                 headers: {
@@ -44,13 +44,19 @@ export default function () {
         }
     }, [isLogin])
     async function handlecheck(id, currentstate) {
-        const updatedtodo = todos.map(todo => (
-            todo._id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
-        ))
-        console.log(todos);
-        settodos(updatedtodo)
-        console.log(updatedtodo)
-        await axios.put(`${BACKEND_URL}/${id}`, { isCompleted: currentstate }, { headers: { Authorization: `Bearer ${token}` } })
+        try{
+
+            const response = await axios.put(`${BACKEND_URL}/todo/${id}`, { isCompleted: currentstate }, { headers: { Authorization: `Bearer ${token}` } })
+            // console.log(response)
+            const updatedtodo = todos.map(todo => (
+                todo._id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+            ))
+            // console.log(todos);
+            settodos(updatedtodo)
+        }catch(e){
+            toast.error("Error!")
+        }
+        // console.log(updatedtodo)
 
     }
     async function addtodo() {
@@ -81,9 +87,9 @@ export default function () {
 
             const response = await axios.delete(`${BACKEND_URL}/todo/${id}`, { headers: { Authorization: `${token}` }})
             if (response.status === 200) {
-                console.log("before fileter")
+                // console.log("before fileter")
                 settodos(todos.filter(todo => (todo._id !== id)))
-                console.log("after fileter")
+                // console.log("after fileter")
                 toast.success(response.data.message)
             } else {
                 toast.error(response.data.message)

@@ -27,14 +27,14 @@ const authMiddleware =(req, res, next) => {
         return next(); // Skip auth for OPTIONS requests
     }
     const token = req.header('Authorization')?.replace('Bearer ', ''); // Extract token from header
-    console.log(token)
+    // console.log(token)
     if (!token) {
       return res.status(401).json({ message: 'You are not logged in!' });
     }
   
     try {
       const decoded = jwt.verify(token,JWT_SECRET ); // Verify the token
-      console.log(decoded)
+    //   console.log(decoded)
       req.user = decoded; // Attach user info to the request object
       next(); // Move to the next middleware/route handler
     } catch (err) {
@@ -51,19 +51,19 @@ app.get("/gett",(req,res)=>{
 })
 app.post('/register', async (req, res) => {
     const { username, password } = req.body;
-    console.log(username)
-    console.log(password)
+    // console.log(username)
+    // console.log(password)
     const already = await User.findOne({username:username})
-    console.log(already)
+    // console.log(already)
     if(already){
         return res.status(400).json({message:"Username already exist!Try another"})
     }
     try {
         const salt = await bcrypt.genSalt(10);
         const hashedpass = await bcrypt.hash(password, salt)
-        console.log(hashedpass)
+        // console.log(hashedpass)
         const user = new User({ username, password:hashedpass });
-        console.log(user)
+        // console.log(user)
         await user.save();
         res.json({ message: 'User registered successfully' });
     } catch (err) {
@@ -74,18 +74,18 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     try {
-        console.log("000")
+        // console.log("000")
         const user = await User.findOne({ username });
-        console.log(user)
+        // console.log(user)
         if (!user) {
-            console.log("not presen")
+            // console.log("not presen")
             return res.status(400).json({ message: 'User Dosent exist ' });
     }
 
-        console.log("reacheddd111")
+        // console.log("reacheddd111")
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: 'Incorrect Password' });
-        console.log("reacheddd")
+        // console.log("reacheddd")
         const token = jwt.sign({ userId: user._id },JWT_SECRET);
         res.json({token:token,message:"Logged in Successfully"});
     } catch (err) {
@@ -115,7 +115,7 @@ app.post("/todo",authMiddleware, async (req, res) => {
         }
         return res.status(200).json({ message: "Error in database!" })
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         return res.status(400).json({ message: "Invalid Inputs!" })
     }
 

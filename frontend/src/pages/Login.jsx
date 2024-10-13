@@ -20,12 +20,12 @@ export default function (){
     async function handleloginn(){
         try{
             const response = await axios.post(`${BACKEND_URL}/login`,{username,password},)
-            console.log(response.status);
+            // console.log(response.status);
             if(response.status===200){
                 localStorage.setItem("token",response.data.token)
                 toast.success(response.data.message)
                 handleLogin();
-                console.log("logged in .. login page")
+                // console.log("logged in .. login page")
                 navigate("/home")
             }else{
                 toast.error(response.data.message)

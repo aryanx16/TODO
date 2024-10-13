@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function(){
     const { isLogin, handleLogout } = useContext(AuthContext);
     const navigate = useNavigate()
-    useEffect(()=>{console.log(isLogin)})
+    // useEffect(()=>{console.log(isLogin)})
     return(
         <>
         <div className="bg-slate-950 p-4">
