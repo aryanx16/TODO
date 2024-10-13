@@ -42,11 +42,11 @@ const authMiddleware =(req, res, next) => {
     }
   };
 app.get("/",(req,res)=>{
-    console.log("server is runninggggggggggggg....")
+    // console.log("server is runninggggggggggggg....")
     res.send("server is runningggggggggggggggggxxxxxxxxxxx.................. ")
 })
 app.get("/gett",(req,res)=>{
-    console.log("getttin.....")
+    // console.log("getttin.....")
     res.send("getttin.....")
 })
 app.post('/register', async (req, res) => {

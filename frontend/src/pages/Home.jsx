@@ -8,8 +8,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import { AuthContext } from '../context/authcontext'
 import Skeleton from '../components/Skeleton'
 export default function () {
-    // const BACKEND_URL = "https://todobxccc.vercel.app"
-    const BACKEND_URL = "http://127.0.0.1:3000"
+    const BACKEND_URL =import.meta.env.VITE_BACKEND_URL
     const { isLogin } = useContext(AuthContext)
     const [todos, settodos] = useState([])
     const [newtodo, setnewtodo] = useState("")

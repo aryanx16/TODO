@@ -12,7 +12,7 @@ export default function (){
     const [password,setpassword] = useState("");
     // const [getuser,setgetuser] = useState(false);
     // const BACKEND_URL = "https://todobxccc.vercel.app"
-    const BACKEND_URL = "http://127.0.0.1:3000"
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 
 
     const { isLogin, handleLogout ,handleLogin } = useContext(AuthContext);

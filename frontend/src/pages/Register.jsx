@@ -10,7 +10,8 @@ export default function (){
     const [username,setusername] = useState("");
     const [password,setpassword] = useState("");
     // const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
-    const BACKEND_URL = "http://127.0.0.1:3000"
+    // const BACKEND_URL = "https://todo-final-backend.vercel.app"
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 
     async function handleregister(){
         try{
