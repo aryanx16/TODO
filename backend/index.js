@@ -10,7 +10,7 @@ const app = express()
 const JWT_SECRET = process.env.JWT_SECRET
 const corsOptions = {
     origin: '*',  // Your frontend origin
-    methods: ['GET', 'POST', 'OPTIONS'],  // Allow OPTIONS method
+    methods: ['GET', 'POST', 'OPTIONS','PUT','DELETE'],  // Allow OPTIONS method
     credentials: true,  // Allow cookies and authentication headers
     allowedHeaders: ['Content-Type', 'Authorization'],  // Allow specific headers
   };
