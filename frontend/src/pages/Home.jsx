@@ -131,10 +131,10 @@ export default function () {
             <Navbar />
             <div className='font-mono z-20 bg-slate-950 min-h-screen'>
                 <div className='flex justify-center items-center text-8xl font-bold font-sans text-sky-600'>TO-DO</div>
-                <div className='w-screen flex justify-center items-center mt-10'>
+                <div className='w-screen flex justify-center items-center mt-10 '>
 
-                    <Input className='text-sky-500 border-2 border-sky-500 text-xl min-w-80 sm:min-w-[400px] md:min-w-[600px] bg-neutral-800' type="text" onChange={(e) => { setnewtodo(e.target.value) }} />
-                    <button className='hover:bg-sky-600 hover:border-neutral-700 font-semibold rounded-md transition-all duration-700 hover:text-black border ml-2 border-sky-700 px-3 py-1 text-sky-400' onClick={addtodo}>Add</button>
+                    <Input className='text-sky-500 border-2 border-sky-500 text-xl min-w-64 sm:min-w-[400px] md:min-w-[600px] bg-neutral-800' value={newtodo} type="text" onChange={(e) => { setnewtodo(e.target.value) }} />
+                    <button className='hover:bg-sky-600 hover:border-neutral-700 font-semibold rounded-md transition-all duration-700 hover:text-black border font-mono ml-2 border-sky-700 px-3 py-1 text-sky-400' onClick={addtodo}>Add</button>
                 </div>
                 <div className=' flex flex-col  items-center justify-center'>
                     {isLogin ? <>
@@ -142,7 +142,7 @@ export default function () {
                         {todos.map(todo =>
                         (
                             
-                            <div key={todo._id} className='transition-all p-2   w-96 md:w-[700px] sm:w-[600px] duration-1000  text-sky-400 font-mono  z-20 border-b-2 border-sky-400' >
+                            <div key={todo._id} className='transition-all px-8 py-2   w-96 md:w-[700px] sm:w-[600px] duration-1000  text-sky-400 font-mono  z-20  border-sky-400' >
 
                                 {
                                     editId === todo._id ? (
@@ -172,6 +172,9 @@ export default function () {
                                                 <button className='relative z-20 hover:bg-sky-600 hover:border-neutral-700 font-semibold rounded-md transition-all duration-700 hover:text-black border ml-2 border-sky-700 px-3 py-1 text-sky-400 m-2' onClick={() => { handleedit(todo._id) }}  >Edit</button>
                                                 <button className='relative z-20 hover:bg-sky-600 hover:border-neutral-700 font-semibold rounded-md transition-all duration-500 hover:text-black border ml-2 border-sky-700 px-3 py-1 text-sky-400' onClick={() => { handledelete(todo._id) }}>Delete</button>
                                             </div>
+                                                <div className='mt-1 border-2 border-sky-400'>
+
+                                                </div>
                                             {/* </CardSpotlight> */}
                                         </>
                                     )}

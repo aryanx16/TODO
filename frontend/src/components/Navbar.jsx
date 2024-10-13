@@ -10,7 +10,7 @@ export default function(){
         <>
         <div className="bg-slate-950 p-4">
 
-        <div className='bg-slate-950 font-mono text-sky-500 flex justify-between sm:px-10 text-3xl mb-5 '>
+        <div className='bg-slate-950 font-mono text-sky-500 flex justify-between sm:px-10 text-2xl sm:text-3xl mb-5 '>
         <div className="hover:text-sky-300 cursor-pointer" onClick={()=>{navigate("/home")}}>aryan</div>
         {isLogin?<div onClick={handleLogout } className="register cursor-pointer hover:text-sky-300" >Logout</div>:
         <div className='flex gap-4'>

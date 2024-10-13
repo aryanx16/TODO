@@ -43,21 +43,21 @@ export default function (){
         <div className="bg-slate-950 min-h-screen w-screen font-mono">
             <Navbar/>
            <div className="w-screen mt-40  flex justify-center items-center">
-                <div className=" border border-sky-700 hover:shadow-md transition-all duration-700  p-7 rounded-3xl backdrop-blur-lg">
-                    <div className="text-7xl text-sky-500 font-mono w-full text-center">
+                <div className=" border border-sky-700 hover:shadow-md transition-all duration-700 p-4  sm:p-7 rounded-3xl backdrop-blur-lg">
+                    <div className="text-7xl mb-2 sm:mb-0 text-sky-500 font-mono font-bold w-full text-center">
                         Login
                     </div>
                     <div className=" flex flex-col justify-center items-center gap-4">
                         <div>
                         <span className="text-sky-500">Username</span>
-                        <Input place="Username" onChange={(e)=>{setusername(e.target.value)}}  type="text" className="text-sky-500 border-2 border-sky-500 text-xl w-80 sm:w-96  transition-all duration-700 hover:bg-neutral-850  bg-neutral-900  "></Input>
+                        <Input place="Username" onChange={(e)=>{setusername(e.target.value)}}  type="text" className="text-sky-500 border-2 border-sky-500 text-xl w-72 sm:w-96  transition-all duration-700 hover:bg-neutral-850  bg-neutral-900  "></Input>
                         </div>
                         <div>
                         <span className="text-sky-500">Password</span>
-                        <Input place="Password" onChange={(e)=>{setpassword(e.target.value)}}   type="text" className="text-sky-500 border-2 border-sky-500 text-xl w-80 sm:w-96  transition-all duration-700 hover:bg-neutral-850  bg-neutral-900  "></Input>
+                        <Input place="Password" onChange={(e)=>{setpassword(e.target.value)}}   type="text" className="text-sky-500 border-2 border-sky-500 text-xl w-72 sm:w-96  transition-all duration-700 hover:bg-neutral-850  bg-neutral-900  "></Input>
                         </div>
                         <div>
-                            <button onClick={handleloginn} className="bg-sky-400 w-80 sm:w-96 p-1 rounded-lg hover:bg-sky-300 font-semibold text-xl">Login</button>
+                            <button onClick={handleloginn} className="bg-sky-400 w-72 sm:w-96 p-1 rounded-lg hover:bg-sky-300 font-semibold text-xl">Login</button>
                         </div>
                        
                         
