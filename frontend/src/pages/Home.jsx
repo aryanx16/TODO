@@ -26,7 +26,7 @@ export default function () {
                 headers: {
                     Authorization: `Bearer ${token}`, // Add the token as a Bearer token
                 },
-                withCredentials:true,
+               
             })
                 .then(response => {
                     // console.log(response);

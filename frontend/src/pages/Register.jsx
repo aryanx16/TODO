@@ -16,7 +16,7 @@ export default function (){
     async function handleregister(){
         try{
 
-            const response = await axios.post(`${BACKEND_URL}/register`,{username,password},{withCredentials:true,})
+            const response = await axios.post(`${BACKEND_URL}/register`,{username,password})
             if(response.status===200){
                 toast.success(response.data.message)
                 // console.log(response.data);
