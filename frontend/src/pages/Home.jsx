@@ -29,7 +29,7 @@ export default function () {
                
             })
                 .then(response => {
-                    console.log(response);
+                    // console.log(response);
                     if(response.status===200){
                         settodos(response.data)
                         setload(false)
@@ -40,7 +40,7 @@ export default function () {
         }catch(e){
             toast.error(e.response.data.message)
         }}else{
-            console.log("NO TOKEN FOUND ! PLEASE LOGIN TO CONTINUE")
+            // console.log("NO TOKEN FOUND ! PLEASE LOGIN TO CONTINUE")
         }
     }, [isLogin])
       const handleKeyDown = (e) => {
@@ -74,7 +74,7 @@ export default function () {
             if (response.status === 200) {
                 toast.success(response.data.message)
 
-                settodos([...todos, response.data.todo])
+                settodos([response.data.todo,...todos])
                 // console.log(response.statusText==='OK')
             }
         } catch (e) {
@@ -165,7 +165,7 @@ export default function () {
                                     ) : (
                                         <>
                                             {/* <CardSpotlight className="transition-all duration-1000"> */}
-                                            <div className='relative z-20 text-3xl sm:text-5xl'>
+                                            <div className='relative z-20 text-3xl sm:text-4xl'>
 
                                                 <input type="checkbox" className='w-5 mr-4 h-5 bg-black  checked:bg-sky-600 rounded-md accent-sky-600' onChange={() => { handlecheck(todo._id, todo.isCompleted) }} checked={todo.isCompleted} />
 
