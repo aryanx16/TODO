@@ -4,7 +4,7 @@ import axios from "axios"
 import { CardSpotlight } from '../components/spotlight'
 import { Input } from '../components/input'
 import Navbar from '../components/Navbar'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast} from 'react-hot-toast'
 import { AuthContext } from '../context/authcontext'
 import Skeleton from '../components/Skeleton'
 export default function () {
@@ -29,7 +29,7 @@ export default function () {
                
             })
                 .then(response => {
-                    // console.log(response);
+                    console.log(response);
                     if(response.status===200){
                         settodos(response.data)
                         setload(false)
@@ -43,6 +43,12 @@ export default function () {
             console.log("NO TOKEN FOUND ! PLEASE LOGIN TO CONTINUE")
         }
     }, [isLogin])
+      const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+        console.log("enter clicked")
+      addtodo();
+    }
+  };
     async function handlecheck(id, currentstate) {
         try{
 
@@ -133,7 +139,7 @@ export default function () {
                 <div className='flex justify-center items-center text-8xl font-bold font-sans text-sky-600'>TO-DO</div>
                 <div className='w-screen flex justify-center items-center mt-10 '>
 
-                    <Input className='text-sky-500 border-2 border-sky-500 text-xl min-w-64 sm:min-w-[400px] md:min-w-[600px] bg-neutral-800' value={newtodo} type="text" onChange={(e) => { setnewtodo(e.target.value) }} />
+                    <Input className='text-sky-500 border-2 border-sky-500 text-xl min-w-64 sm:min-w-[400px] md:min-w-[600px] bg-neutral-800' onKeyDown={handleKeyDown}       value={newtodo} type="text" onChange={(e) => { setnewtodo(e.target.value) }} />
                     <button className='hover:bg-sky-600 hover:border-neutral-700 font-semibold rounded-md transition-all duration-700 hover:text-black border font-mono ml-2 border-sky-700 px-3 py-1 text-sky-400' onClick={addtodo}>Add</button>
                 </div>
                 <div className=' flex flex-col  items-center justify-center'>

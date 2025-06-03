@@ -6,12 +6,12 @@ const todoSchema = new mongoose.Schema({
     todo:{type:String,required:true},
     isCompleted:{type:Boolean,default:false},
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-})
+},{timestamps:true})
 
 const UserSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-  });
+  },{timestamps:true});
 const User = mongoose.model("User",UserSchema)
 const Todos = mongoose.model("Todos",todoSchema)
 

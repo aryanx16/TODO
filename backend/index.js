@@ -95,8 +95,9 @@ app.post('/login', async (req, res) => {
 
 app.get("/todos",authMiddleware, async (req, res) => {
     try{
-
-        const todos = await Todos.find({userId:req.user.userId})
+        const todos = await Todos.find({userId:req.user.userId}).sort({ createdAt: -1 }); 
+        console.log("__________----")
+        console.log(todos)
         return res.json(todos)
     }catch(e){
         res.json({error:"No todos !"})

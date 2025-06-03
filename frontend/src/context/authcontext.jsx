@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export const AuthContext = createContext();
 
@@ -16,7 +17,9 @@ export const AuthProvider = ({ children }) => {
       }
   }, []);
   const handleLogin = () =>{console.log("logging"); setIsLogin(true)};
-  const handleLogout = () => {console.log("logged out");setIsLogin(false);localStorage.setItem("token","")};
+  const handleLogout = () => {console.log("logged out");
+    toast.success("Logged Out")
+    setIsLogin(false);localStorage.setItem("token","")};
 
   return (
     <AuthContext.Provider value={{ isLogin, handleLogin, handleLogout }}>
